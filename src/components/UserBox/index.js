@@ -67,8 +67,12 @@ margin: .75rem .625rem;
       a{
         font-size: .75rem;
         line-height: .875rem;
-        color: #2E7BB4;
+        color: #2e7bb4;
         text-decoration: none;
+      }
+
+      .edit-perfil {
+        float: right;
       }
 
     }

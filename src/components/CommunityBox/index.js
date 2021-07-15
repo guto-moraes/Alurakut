@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import community1 from "../../assets/images/communities/abro-a-geladeira-para-pensar.jpg";
@@ -68,12 +68,35 @@ const ListItem = styled.div`
         font-size: 0.675rem;
         line-height: 0.75rem;
         color: #fff;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        hyphens: auto;        
     }
 `;
 
 function FriendsCommunity() {
 
-    const pseudoFriends = ['marcobrunodev','maykbrito','omariosouto', 'vanessametonini', 'diego3g', 'filipedeschamps'];
+    const [community, setCommunity] = useState([]);
+    const pseudoFriends = ['marcobrunodev','maykbrito','omariosouto', 'vanessametonini', 'diego3g', 'filipedeschamps'];   
+
+    useEffect(() => {
+
+        pseudoFriends.map( item => {
+            setCommunity(prevCommunity => [...prevCommunity, item]);
+        });
+
+        return () => {
+            setCommunity();
+        }
+
+    }, []);
+
+    function friends(username){
+        fetch(`https://api.github.com/users/${username}`)
+        .then(async response => await response.json()) //Converting the response to a JSON object
+        .then( data => data.name )
+        .catch( error => console.error(error));
+    }
 
     return (
         <CommunityWrapper>
@@ -83,11 +106,15 @@ function FriendsCommunity() {
                 </h1>
                 <List>
                 {
-                  pseudoFriends.map( (item, key) => {
-                    const imageLink = `https://github.com/${item}.png`;
-                    <ListItem key={key} image={imageLink}>
-                        <h2>{item}</h2>
-                    </ListItem>
+                  community.map( (username, key) => {
+                    const user = friends(username);
+                    return(
+                        <a key={key} href={`https://github.com/${username}`} title={username} target="_blank">
+                            <ListItem image={`https://github.com/${username}.png`}>
+                                <h2>{user}</h2>
+                            </ListItem>
+                        </a>
+                    )
                   })
                 }
                 </List>

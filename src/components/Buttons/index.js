@@ -8,6 +8,7 @@ const Button = styled.button`
   padding: 0.625rem .75rem;
   border: 0;
   border-radius: .5rem;
+  cursor: pointer;
 
   &:not(:last-child){
     margin-right: 1rem;
