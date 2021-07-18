@@ -1,4 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { createGlobalStyle } from 'styled-components'
 import React from "react";
 import {Helmet} from "react-helmet";
  
@@ -29,21 +29,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Rubik', sans-serif;
   }
 `
-
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-}
-
 export default function App({ Component, pageProps }) {
   return (
     <>
       <Application />
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <Component {...pageProps} />
     </>
   )
 }

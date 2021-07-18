@@ -4,7 +4,5 @@ node_modules/
 
 .next/
 
-.env-local
-.env
-
-.txt
+// .gitignore
+.env*.local
