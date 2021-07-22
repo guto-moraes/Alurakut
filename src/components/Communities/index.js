@@ -17,7 +17,7 @@ export default function Communities() {
     fetch('https://graphql.datocms.com/', {
       method: 'POST',
       headers: {
-        'Authorization': 'b4f8934093a7c8aca896720661c056',
+        'Authorization': process.env.DATOCMS_API_TOKEN,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ "query": 
