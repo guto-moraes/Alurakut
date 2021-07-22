@@ -1,7 +1,14 @@
 import styled from "styled-components";
+import { Link } from "../Utilities";
+import plusIcon from "../../assets/images/icons/plus-icon.svg";
 
 const UserDetailsBlock = styled.div`
   margin: 0 auto;
+
+  span{
+    font-size: .75rem;
+    color: #999;
+  }
 `;
 
 const DetailsList = styled.ul`
@@ -63,4 +70,28 @@ const AppsTitle = styled.h2`
   margin-bottom: .75rem;
 `;
 
-export { UserDetailsBlock, UserName, DetailsList, ActionsList, AppsTitle };
+const ActionLink = styled(Link)`
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: .5rem;
+
+  a{
+    font-size: .75rem;
+    color: #2e7bb4;
+  }
+`;
+
+const ActionApps = (props) => {
+  return(
+    <ActionLink>
+      <img src={plusIcon.src} title={props.actionTitle} />
+      <Link to={props.to} title={props.actionTitle}>
+        {props.actionTitle}
+      </Link>
+    </ActionLink>
+  )
+} 
+
+export { UserDetailsBlock, UserName, DetailsList, ActionsList, AppsTitle, ActionApps };

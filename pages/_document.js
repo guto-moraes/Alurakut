@@ -1,5 +1,5 @@
-import Document from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
+import Document from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -21,10 +21,16 @@ export default class MyDocument extends Document {
             {initialProps.styles}
             {sheet.getStyleElement()}
           </>
-        ),
+        )
       }
     } finally {
       sheet.seal()
     }
   }
+}
+
+export function getServerSideProps({ req, res }) {
+  return { 
+    props: { loggedin: req.cookies.loggedin || '' } 
+  };
 }

@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import HamburgerMenu from "../HamburgerMenu";
 import Nav from "../Nav";
-import Logo from "../../assets/images/alurakut-logo.svg";
+import { Link } from "../Utilities";
+import Logo from "../../assets/images/alurakut.svg";
 
 const Header = styled.header`
   position: relative;
@@ -14,6 +15,7 @@ const Header = styled.header`
 
 const NavBar = styled.div`
   margin: 0 auto;
+  line-height: .188rem;
 
   @media(max-width: 859px){
     width: 90vw;
@@ -37,10 +39,13 @@ const NavBrand = styled.img.attrs(
 `;
 
 export default function Navigation() {
+
     return (
         <Header>
           <NavBar>
-            <NavBrand image={Logo.src} />
+            <Link to="./" title="Página inicial do Alurakut">
+              <NavBrand image={Logo.src} />
+            </Link>
             <HamburgerMenu />
             <Nav />
           </NavBar>

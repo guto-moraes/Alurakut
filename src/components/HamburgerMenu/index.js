@@ -4,6 +4,7 @@ const HamburgerMenuIcon = styled.button`
     display: none;
     width: 1.85rem;
     height: 1.75rem;
+    margin-top: .25rem;
     background-color: transparent;
     border: 0;
     cursor: pointer;

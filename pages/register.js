@@ -1,5 +1,3 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { LoginWrapper, LoginRootWrapper} from '../src/components/Wrappers';
 import { ContentBox, Link } from '../src/components/Utilities';
@@ -61,7 +59,7 @@ const LoginContentBox = styled(ContentBox)`
 
 const LoginFormGroup = styled.aside`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: .75rem;
   width: 100%;
 
@@ -135,24 +133,6 @@ const ButtonLogin = styled(Button)`
   }
 `;
 
-const Error = styled.span`
-  display: none;
-  font-size: .75rem;
-  color: red;
-`;
-
-const EmailError = styled(Error)`
-  &.error{
-    display: block;
-  }
-`;
-
-const PasswordError = styled(Error)`
-  &.error{
-    display: block;
-  }
-`;
-
 const LoginFooter = styled.footer`
   display: flex;
   align-items: center;
@@ -173,76 +153,6 @@ const LoginFooterContentBox = styled(ContentBox)`
 `;
 
 export default function Login(){
-
-  const router = useRouter();
-  const [user, setUser] = useState([{}]);
-  
-  useEffect(() => {
-    const DATO_API = "https://graphql.datocms.com/";
-    const LOGIN_QUERY = `query {
-      allUsers {
-        id
-        username
-        email
-        password
-      }
-    }`;
-
-    fetch(DATO_API, {
-      method: 'POST',
-      headers: {
-        'Authorization': 'b4f8934093a7c8aca896720661c056',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ "query": LOGIN_QUERY })
-    })
-    .then( response => response.json() )
-    .then( res => {
-      setUser(res.data.allUsers);
-    });
-
-    return () => {
-      setUser();
-    }
-
-  }, []);
-
-  const userInfo = [];
-  user.map( item => userInfo.push(item.email, item.password, item.username));
-
-
-  const handleLogin = (e) => {
-
-    const email = document.querySelector(".email-error");
-    const pass = document.querySelector('.password-error');
-
-    e.preventDefault();
-
-    if(userInfo[0] == e.target[0].value && userInfo[1] == e.target[1].value){
-      
-      fetch(
-        "/api/login",
-        {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ "loggedin": { username: userInfo[2], email: userInfo[0] }})  
-        }
-      );
-      router.push('/home');
-
-    } else if(userInfo[0] !== e.target[0].value && userInfo[1] !== e.target[1].value){
-      email.classList.add('error');
-      pass.classList.add('error');      
-    } else if(userInfo[0] !== e.target[0].value && userInfo[1] == e.target[1].value){
-      email.classList.add('error');
-    } else if(userInfo[0] == e.target[0].value && userInfo[1] !== e.target[1].value){
-      pass.classList.add('error');
-    }
-  }
-
-
   return(
     <LoginWrapper>
       <LoginRootWrapper>
@@ -260,20 +170,15 @@ export default function Login(){
           </LoginContentBox>
 
           <LoginFormGroup>
-            <LoginContentBox className="sign-in">
-              <LoginForm onSubmit={handleLogin}>
-                <h2>Acesse o <strong>Alurakut</strong> com a sua conta</h2>
-                <EmailError className="email-error">O e-mail informado não é válido!</EmailError>
-                <input type="email" name="username" placeholder="Informe seu nome de usuário" />
-                <PasswordError className="password-error">A senha informada não é válida!</PasswordError>
+            <LoginContentBox>
+              <LoginForm>
+                <h2>Crie sua conta no <strong>Alurakut</strong></h2>
+                <input type="text" name="username" placeholder="Informe seu nome de usuário" />
+                <input type="email" name="password" placeholder="Informe seu e-mail" />
                 <input type="password" name="password" placeholder="Digite sua senha" />
-                <ButtonLogin type="submit">Login</ButtonLogin>
+                <input type="password" name="check_password" placeholder="Repita a senha digitada" />
+                <ButtonLogin type="submit">Criar conta</ButtonLogin>
               </LoginForm>
-            </LoginContentBox>
-
-            <LoginContentBox className="sign-up">
-              <p>Ainda não é membro?</p>
-              <Link to="/register" title="Crie sua conta no Alurakut">Entre Já</Link>
             </LoginContentBox>
           </LoginFormGroup>
         </LoginMain>

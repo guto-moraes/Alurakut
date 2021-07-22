@@ -29,7 +29,7 @@ export default function Welcome(props){
     'Não tenha medo da mudança.',
     'Nunca desista de lutar!'
 
-  ]; 
+  ];
 
   return(
     <>

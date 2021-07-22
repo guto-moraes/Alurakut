@@ -11,14 +11,13 @@ import {
 export default function Communities() {
 
   const [communities, setCommunities] = useState([{}]);
-  // const randomCommunities = ArrayRandom(communities, 6);
 
   useEffect(() => {
 
     fetch('https://graphql.datocms.com/', {
       method: 'POST',
       headers: {
-        'Authorization': process.env.DATO_CMS_TOKEN,
+        'Authorization': 'b4f8934093a7c8aca896720661c056',
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({ "query": 

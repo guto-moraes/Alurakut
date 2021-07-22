@@ -2,7 +2,6 @@ import { UserName, DetailsList, ActionsList, AppsTitle } from "../UserSidebarSty
 
 import bookIcon from "../../assets/images/icons/book-icon.svg";
 import photoIcon from "../../assets/images/icons/photo-icon.svg";
-import plusIcon from "../../assets/images/icons/plus-icon.svg";
 import sunnyIcon from "../../assets/images/icons/sunny-icon.svg";
 import toDoListIcon from "../../assets/images/icons/to-do-list-icon.svg";
 import userUpdateIcon from "../../assets/images/icons/user-update-icon.svg";
@@ -83,17 +82,17 @@ function UserActionsListTwo() {
 
 function UserApps(){
 
-  return(
-    <>
-      <AppsTitle>Apps</AppsTitle>
-      <ActionsList>
-        <li>
-          <img src={plusIcon.src} alt="Adicionar App" />
-          <a href="#" title="Adicionar App">Adicionar App</a>
-        </li>                                   
-      </ActionsList>
-    </>
-  )
-}
+    return(
+      <>
+        <AppsTitle>Apps</AppsTitle>
+        <ActionsList>
+          <li>
+            <img src={plusIcon.src} alt="Adicionar App" />
+            <a href="#" title="Adicionar App">Adicionar App</a>
+          </li>                                   
+        </ActionsList>
+      </>
+    )
+  }
 
-export { User, UserDetailsList, UserApps, UserActionsListOne, UserActionsListTwo };
+export { User, UserDetailsList, UserActionsListOne, UserActionsListTwo, UserApps };

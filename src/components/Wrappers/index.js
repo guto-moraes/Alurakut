@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   background-color: #d9e6f6;
 `;
 
-const RootWrapper = styled.div`
+const RootWrapperThreeColumns = styled.div`
   display: grid;
   grid-gap: .625rem;
   margin: 0 auto;
@@ -23,8 +23,40 @@ const RootWrapper = styled.div`
   }
 `;
 
+const RootWrapperTwoColumns = styled(RootWrapperThreeColumns)`
+
+  @media(min-width: 860px){
+    grid-template-columns: 10rem 59.375rem;
+  }
+`
+
 const ContentWrapper = styled.div`
   width: 100%;
 `;
 
-export { Wrapper, RootWrapper, ContentWrapper };
+const LoginWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-gap: .75rem;
+  width: 100%;
+  height: 100vh;
+  background-color: #d9e6f6;
+`;
+
+const LoginRootWrapper = styled.div`
+
+  display: grid;
+  grid-gap: .75rem;
+
+  @media(max-width: 859px){
+    grid-template-columns: 90vw;
+  }  
+
+  @media(min-width: 860px){
+    grid-template-rows: 23rem 1.875rem;
+    width: 69.375rem;
+  }
+`;
+
+export { Wrapper, RootWrapperThreeColumns, RootWrapperTwoColumns, ContentWrapper, LoginWrapper, LoginRootWrapper };

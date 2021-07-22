@@ -1,3 +1,5 @@
+import { useRouter } from 'next/router';
+import cookie from "js-cookie";
 import styled from "styled-components";
 
 const ContentStatusLog = styled.div`
@@ -15,7 +17,7 @@ const ContentStatusLog = styled.div`
     &:not(:last-child)::before {
       content : "";
       position: absolute;
-      top: 4px;
+      top: -.188rem;
       right: 0;
       width: 1px;
       height: .575rem;
@@ -42,11 +44,30 @@ const ContentStatusLog = styled.div`
 
 `;
 
-export default function StatusLog(){
+export default function StatusLog(){ 
+
+  const router = useRouter();
+
+  const email = "joseaugusto.teo@gmail.com";
+
+  function handleLogout(){
+    fetch(
+      "/api/login",
+      {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({})  
+      }
+    );
+    router.push("/");
+  }
+
   return(
     <ContentStatusLog>
-      <a className="username" href="#" title="Username">joseaugusto.teo@gmail.com</a>
-      <a className="logout" href="#" title="Logout">Sair</a>
+      <a className="username" href="#" title="Username">{email}</a>
+      <a className="logout" onClick={handleLogout} title="Logout">Sair</a>
     </ContentStatusLog>
   )
 }

@@ -4,7 +4,7 @@ import SearchBox from "../SearchBox";
 
 const Nav = styled.nav`
     display: flex;
-    width: 100%;
+    justify-content: space-between;
 
     @media(max-width: 859px){
         visibility: hidden;
@@ -13,7 +13,6 @@ const Nav = styled.nav`
         right: 0;
         left: -100vw;
         width: 100vw;
-        padding: 1rem 2.85rem;
         background-color: #5c9ecf;    
         transition: 600ms all;  
 
@@ -27,14 +26,15 @@ const Nav = styled.nav`
 const NavBlock = styled.div`
     display: grid;
     grid-gap: 1.75rem;
-    width: 100%;
 
     @media (min-width: 860px) {        
         grid-template-columns: auto 14.75rem 11.375rem;
+        width: 100vw;
     }
 
     @media(max-width: 859px){
-        width: 90vw;
+        width: 100%;
+        padding: 1rem 5vw 1.5rem 5vw;
     }
 `;
 
@@ -89,7 +89,7 @@ const NavList = styled.ul`
             &:not(:last-child)::before {
                 content : "";
                 position: absolute;
-                top: 6.5px;
+                top: .188rem;
                 right: 0;
                 width: 1px;
                 height: .575rem;
@@ -102,11 +102,11 @@ const NavList = styled.ul`
 
 export default function Menu() {
     const menuItems = [
-        "Início",
-        "Perfil",
-        "Página de recados",
-        "Amigos",
-        "Comunidades",
+        { title: "Início", link: "/home" },
+        { title: "Perfil", link: "/profile" },
+        { title: "Página de recados", link: "/messages" },
+        { title: "Amigos", link: "/friends" },
+        { title: "Minhas Comunidades", link: "/my-communities" }
     ];
 
     return (
@@ -117,11 +117,11 @@ export default function Menu() {
                         return (
                             <li key={key}>
                                 <a
-                                    className={item == "Início" ? "active" : ""}
-                                    href="#"
-                                    title={item}
+                                    className={item.title == "Início" ? "active" : ""}
+                                    href={item.link}
+                                    title={item.title}
                                 >
-                                    {item}
+                                    {item.title}
                                 </a>
                             </li>
                         );

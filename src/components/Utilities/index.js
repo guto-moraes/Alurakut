@@ -11,6 +11,10 @@ const ContentBox = styled.div`
   }
 `;
 
+const LargePaddingContentBox = styled(ContentBox)`
+  padding: 1.5rem!important;
+`;
+
 const SquareAvatar = styled.div`
   width: 7.625rem;
   height: 7.625rem;
@@ -102,8 +106,91 @@ const ListFriendsCommunitiesItem = styled.div`
     }
 `;
 
+const Breadcrumb = styled.ul`
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: .5rem;
+
+   li{
+    font-size: 0.875rem;
+    color: #999;
+    line-height: 1.125rem;
+   } 
+
+  li:not(:last-child)::after{
+    content: ">";
+    font-size: 0.875rem;
+    color: #999;
+    margin: 0 .25rem;
+  }
+
+  a{
+    color: #2e7bb4;
+  }
+`;
+
+const Pagination = styled.ul`
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  li{
+    position: relative;
+    font-size: .875rem;
+    color: #333;
+    padding-right: .5rem;
+
+    &:nth-child(2).plus{
+      position: relative;
+      padding-left: 1rem!important;
+
+      &::after {
+        content: "<";
+        position: absolute;
+        top: 0;
+        left: .35rem;
+        font-size: 0.875rem;
+        color: #333;
+      }
+    }
+
+    &:nth-child(3).plus{
+      position: relative;
+      padding-right: 1rem!important;
+
+      &::after {
+        content: ">";
+        position: absolute;
+        top: 0;
+        right: .35rem;
+        font-size: 0.875rem;
+        color: #333;
+      }
+    }    
+
+    &:not(:first-child) {
+      padding-left: .5rem;
+    }
+
+    &:not(:last-child)::before {
+      content : "";
+      position: absolute;
+      top: .125rem;
+      right: 0;
+      width: 1px;
+      height: .875rem;
+      background: #333;
+      z-index: 100;
+    }
+  }
+`;
+
 export { 
   ContentBox, 
+  LargePaddingContentBox,
   SquareAvatar, 
   Link, 
   Linked, 
@@ -111,5 +198,7 @@ export {
   SectionTitle, 
   ArrayRandom, 
   ListFriendsCommunities, 
-  ListFriendsCommunitiesItem 
+  ListFriendsCommunitiesItem,
+  Breadcrumb,
+  Pagination
 };

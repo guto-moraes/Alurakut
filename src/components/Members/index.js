@@ -8,9 +8,9 @@ import {
   ListFriendsCommunitiesItem 
 } from '../Utilities';
 
-export default function Friends() {
+export default function Members() {
 
-  const [friends, setFriends] = useState([{}]);
+  const [members, setMembers] = useState([{}]);
 
   useEffect(() => {
 
@@ -34,11 +34,11 @@ export default function Friends() {
     .then( response => response.json() )
     .then( res => {
       const dato_cms = res.data.allFriends;
-      setFriends(dato_cms);
+      setMembers(dato_cms);
     })
 
     return () => {
-      setFriends();
+      setMembers();
     }
 
   }, []);
@@ -46,11 +46,11 @@ export default function Friends() {
   return(
     <>
       <SectionTitle>
-        Amiges <span>({friends.length})</span>
+        Members <span>({members.length})</span>
       </SectionTitle>
       <ListFriendsCommunities>
         {
-          friends.slice(0, 6).map( (user, key) => {
+          members.slice(0, 6).map( (user, key) => {
             return(
               <Link key={key} to={user.githubLink} title={user.name} target="_blank">
                 <ListFriendsCommunitiesItem image={user.avatar}>
