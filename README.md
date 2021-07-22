@@ -1,4 +1,5 @@
- <span style="display:block;text-align:center">![Alurakut](https://raw.githubusercontent.com/guto-moraes/Alurakut/Aula04/src/assets/images/alurakut-login.svg)</div>
+ <span style="display:block;text-align:center">![Alurakut](https://raw.githubusercontent.com/guto-moraes/Alurakut/Aula04/src/assets/images/alurakut-login.svg)</span>
+ 
  <span style="display:block;text-align:center">:wrench: **Projeto em desenvolvimento!** :hammer:</span>
 # Sobre o Alurakut
 
